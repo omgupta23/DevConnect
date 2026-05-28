@@ -68,10 +68,15 @@ authrouter.post("/login", async (req, res) => {
       const token = user.getjwt();
 
       res.cookie("token", token, {
-        expires: new Date(Date.now() + 8 * 3600000),
         httpOnly: true,
         secure: true,
         sameSite: "none",
+        maxAge: 8 * 60 * 60 * 1000,
+      });
+
+      res.status(200).json({
+        message: "Login successful",
+        user,
       });
       res.send(user);
     } else {
