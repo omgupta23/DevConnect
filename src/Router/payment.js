@@ -65,4 +65,8 @@ paymentrouter.post("/verify-payment", Authanticate, async (req, res) => {
   }
 });
 
+paymentrouter.get("/payment-test", (req, res) => {
+  res.send("Payment Working");
+});
+
 module.exports = paymentrouter;
