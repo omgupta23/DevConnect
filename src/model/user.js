@@ -32,6 +32,12 @@ const userSchema = new mongoose.Schema(
         }
       },
     },
+    //On working Right Now
+
+    isPremium: {
+      type: Boolean,
+      default: false,
+    },
 
     password: {
       type: String,

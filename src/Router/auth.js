@@ -71,6 +71,7 @@ authrouter.post("/login", async (req, res) => {
         httpOnly: true,
         secure: true,
         sameSite: "none",
+        path: "/",
         maxAge: 8 * 60 * 60 * 1000,
       });
 

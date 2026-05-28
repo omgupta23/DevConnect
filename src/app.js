@@ -4,7 +4,9 @@ dns.setServers(["1.1.1.1", "8.8.8.8"]);
 const express = require("express");
 const connectDB = require("./config/db");
 const cookieparser = require("cookie-parser");
+
 const app = express();
+app.set("trust proxy", 1);
 
 app.use(express.json());
 app.use(cookieparser());
@@ -13,6 +15,7 @@ const authrouter = require("./Router/auth");
 const profilerouter = require("./Router/profile");
 const requestrooter = require("./Router/request");
 const userrooter = require("./Router/user");
+const paymentrouter = require("./Router/payment");
 const cors = require("cors");
 
 const allowedOrigins = [
@@ -41,7 +44,7 @@ app.use("/", authrouter);
 app.use("/", profilerouter);
 app.use("/", requestrooter);
 app.use("/", userrooter);
-
+app.use("/", paymentrouter);
 connectDB()
   .then(() => {
     console.log("database connection established");
