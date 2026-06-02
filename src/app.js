@@ -29,9 +29,9 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: allowedOrigins,
+    origin: ["http://localhost:5173", "https://dev-connect-ui-c6zq.vercel.app"],
+    credentials: true,
   },
-  credentials: true,
 });
 
 socketHandler(io);
