@@ -1,7 +1,7 @@
 const { Socket } = require("socket.io");
 
 const socketHandler = (io) => {
-  io.on("connection", (Socket) => {
+  io.on("connection", (soket) => {
     console.log("Soket Connection Istablihed");
   });
 };

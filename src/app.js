@@ -20,6 +20,7 @@ const requestrooter = require("./Router/request");
 const userrooter = require("./Router/user");
 const paymentrouter = require("./Router/payment");
 const cors = require("cors");
+const chatRouter = require("./Router/chat");
 
 const allowedOrigins = [
   "http://localhost:5173",
@@ -58,6 +59,7 @@ app.use("/", profilerouter);
 app.use("/", requestrooter);
 app.use("/", userrooter);
 app.use("/", paymentrouter);
+app.use("/", chatRouter);
 connectDB()
   .then(() => {
     console.log("database connection established");
