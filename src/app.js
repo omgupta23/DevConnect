@@ -59,7 +59,7 @@ app.use("/", profilerouter);
 app.use("/", requestrooter);
 app.use("/", userrooter);
 app.use("/", paymentrouter);
-app.use("/", chatRouter);
+app.use("/chat", chatRouter);
 connectDB()
   .then(() => {
     console.log("database connection established");

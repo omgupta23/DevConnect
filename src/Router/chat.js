@@ -3,7 +3,7 @@ const { Authanticate } = require("../Middleware/auth");
 const Message = require("../model/message");
 const chatRouter = express.Router();
 
-chatRouter.get("chat/:receiverId", Authanticate, async (req, res) => {
+chatRouter.get(":receiverId", Authanticate, async (req, res) => {
   try {
     const senderId = req.user._id;
     const { receiverId } = req.params;
@@ -28,7 +28,7 @@ chatRouter.get("chat/:receiverId", Authanticate, async (req, res) => {
     });
   }
 });
-chatRouter.post("chat/send", Authanticate, async (req, res) => {
+chatRouter.post("send", Authanticate, async (req, res) => {
   try {
     const senderId = req.user._id;
     const { receiverId, text } = req.body;
