@@ -7,6 +7,10 @@ const razorpayInstance = require("../utils/razorpay");
 
 const User = require("../model/user");
 
+paymentrouter.get("/payment-test", (req, res) => {
+  res.send("Payment Working");
+});
+
 paymentrouter.post("/create-order", Authanticate, async (req, res) => {
   try {
     const options = {
@@ -63,10 +67,6 @@ paymentrouter.post("/verify-payment", Authanticate, async (req, res) => {
       message: "Server Error",
     });
   }
-});
-
-paymentrouter.get("/payment-test", (req, res) => {
-  res.send("Payment Working");
 });
 
 module.exports = paymentrouter;
