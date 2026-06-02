@@ -77,4 +77,16 @@ userrouter.get("/feed", Authanticate, async (req, res) => {
     res.status(400).json({ message: err.message });
   }
 });
+
+userrouter.get("/user/:userId", Authanticate, async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId).select(
+      "firstName lastName photoUrl",
+    );
+
+    res.send(user);
+  } catch (err) {
+    res.status(500).send("Error");
+  }
+});
 module.exports = userrouter;
