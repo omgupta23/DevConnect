@@ -2,8 +2,11 @@ require("dotenv").config();
 const dns = require("dns");
 dns.setServers(["1.1.1.1", "8.8.8.8"]);
 const express = require("express");
+const http = require("http");
+const { Server } = require("socket.io");
 const connectDB = require("./config/db");
 const cookieparser = require("cookie-parser");
+const socketHandler = require("./socket/soket");
 
 const app = express();
 app.set("trust proxy", 1);
@@ -22,6 +25,16 @@ const allowedOrigins = [
   "http://localhost:5173",
   "https://dev-connect-ui-c6zq.vercel.app",
 ];
+const server = http.createServer(app);
+
+const io = new Server(server, {
+  cors: {
+    origin: allowedOrigins,
+  },
+  credentials: true,
+});
+
+socketHandler(io);
 
 app.use(
   cors({
@@ -51,7 +64,7 @@ connectDB()
 
     const PORT = process.env.PORT || 3000;
 
-    app.listen(PORT, () => {
+    server.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);
     });
   })

@@ -7,10 +7,6 @@ const razorpayInstance = require("../utils/razorpay");
 
 const User = require("../model/user");
 
-paymentrouter.get("/payment-test", (req, res) => {
-  res.send("Payment Working");
-});
-
 paymentrouter.post("/create-order", Authanticate, async (req, res) => {
   try {
     const options = {
@@ -23,8 +19,6 @@ paymentrouter.post("/create-order", Authanticate, async (req, res) => {
 
     res.status(200).json(order);
   } catch (error) {
-    console.log(error);
-
     res.status(500).json({
       message: "Something went wrong",
     });
@@ -61,8 +55,6 @@ paymentrouter.post("/verify-payment", Authanticate, async (req, res) => {
       message: "Payment failed",
     });
   } catch (error) {
-    console.log(error);
-
     res.status(500).json({
       message: "Server Error",
     });
