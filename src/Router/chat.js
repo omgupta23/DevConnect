@@ -19,8 +19,6 @@ chatRouter.get("/:receiverId", Authanticate, async (req, res) => {
       ],
     }).sort({ createdAt: 1 });
 
-    console.log("Chat API Hit");
-
     res.send(messages);
   } catch (err) {
     res.status(500).json({
